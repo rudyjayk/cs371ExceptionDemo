@@ -20,6 +20,19 @@ namespace ExceptionsDemo
             Serenity.AddCrew("Shepherd", "Derrial Book");
             Serenity.AddCrew("Medic", "Simon Tam");
             Serenity.AddCrew("Crew", "River Tam");
+            try
+            {
+                Serenity.AddCrew("Chef", "Gordon Ramsey");
+                if (Serenity.CurrentCrewSize() > Serenity.CrewCapacity)
+                {
+                    throw new ExceedCapacityException("Too many people on ship");
+                }
+            }
+            catch (ExceedCapacityException e)
+            {
+                Console.WriteLine(e.Message);
+                return;
+            }
 
             Serenity.Print();
             Serenity.PrintRoster();
